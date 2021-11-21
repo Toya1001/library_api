@@ -84,3 +84,5 @@ class LoanController extends Controller
 
         return $search;
 }
+
+}
