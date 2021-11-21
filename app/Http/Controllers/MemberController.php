@@ -81,15 +81,15 @@ class MemberController extends Controller
     /**
      * Search for a specified member from database.
      *
-     * @param  int  $name
+     * @param mixed $person
      * @return \Illuminate\Http\Response
      */
-    public function search($name)
+    public function search($person)
     {
-        $member = Member::where('name', 'like', '%'.$name.'%')
-        ->orWhere('email', 'like', '%'.$name.'%')
-        ->orWhere('street_address', 'like', '%'.$name.'%')
-        ->orWhere('town', 'like', '%' . $name .'%')
+        $member = Member::where('name', 'like', '%'.$person.'%')
+        ->orWhere('email', 'like', '%'.$person.'%')
+        ->orWhere('street_address', 'like', '%'.$person.'%')
+        ->orWhere('town', 'like', '%' . $person .'%')
         ->get();
 
         return $member;

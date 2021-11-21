@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\LoanedBook;
 use Illuminate\Http\Request;
 
-class BookController extends Controller
+class LoanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        return Book::all();
+        //
+        return LoanedBook::all();
     }
 
     /**
@@ -26,7 +27,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
-        return Book::create($request->all());
+        LoanedBook::create($request->all());
     }
 
     /**
@@ -37,7 +38,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        return Book::findOrFail($id);
+        //
+        LoanedBook::findOrFail($id);
     }
 
     /**
@@ -50,9 +52,9 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $book = Book::find($id);
-        $book->update($request->all());
-        return $book;
+        $loan = LoanedBook::find($id);
+        $loan->update($request->all());
+        return $loan;
     }
 
     /**
@@ -63,23 +65,22 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        return Book::destroy($id);
+        //
     }
 
     /**
-     * Search for the specified resource from storage.
+     * Search the specified resource from storage.
      *
-     * @param  mixed  $item
+     * @param  mixed  $search
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function searchBooks($item)
+
+    public function searchLoans($search)
     {
-        $books = Book::where('title', 'like', '%'.$item.'%')
-        ->orWhere('author', 'like', '%'.$item.'%')
-        ->orWhere('publisher', 'like', '%'.$item.'%')
-        ->get();
+        $search = LoanedBook::where('book_id', 'like', '%' . $search . '%')
+            ->orWhere('member_id', 'like', '%' . $search . '%')
+            ->get();
 
-        return $books;
-    }
+        return $search;
 }
-

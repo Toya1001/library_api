@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\MemberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('members', MemberController::class);
-Route::get('members/search/{name}', [MemberController::class, 'search']);
+Route::get('members/search/{person}', [MemberController::class, 'search']);
 
-Route::resource('books', [BookController::class]);
+Route::resource('books', BookController::class);
+Route::get('books/search/{item}', [BookController::class, 'searchBooks']);
 
-
+Route::resource('loans', LoanController::class);
+Route::get('loans/search/{search}', [LoanController::class, 'searchLoans']);

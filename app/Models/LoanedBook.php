@@ -10,7 +10,7 @@ class LoanedBook extends Model
     use HasFactory;
 
     protected $fillable = [
-        'member_id', 'book_id',	'date_issued', 'due_date', 'copies_borrowed', 'processed_by',	'date_returned', 'receieved_by', 'returned', 'overdue',
+        'member_id', 'book_id',	'date_issued', 'due_date', 'copies_borrowed', 'processed_by', 'date_returned', 'receieved_by', 'returned', 'overdue',
     ];
 
     public function member(){
